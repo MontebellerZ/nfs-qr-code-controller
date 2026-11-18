@@ -1,0 +1,43 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Iniciar API e React",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-api",
+      "program": "${workspaceFolder}\\api\\bin\\Debug\\net10.0\\Nfs.Api.dll",
+      "cwd": "${workspaceFolder}\\api",
+      "console": "internalConsole",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5163"
+      },
+      "serverReadyAction": {
+        "action": "startDebugging",
+        "name": "React (Vite)",
+        "pattern": "Now listening on:\\s+(http://localhost:5163)",
+        "killOnServerStop": true
+      }
+    },
+    {
+      "name": "React (Vite)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}\\web\\node_modules\\vite\\bin\\vite.js",
+      "args": ["--host", "localhost"],
+      "cwd": "${workspaceFolder}\\web",
+      "console": "internalConsole",
+      "env": {
+        "FORCE_COLOR": "0"
+      },
+      "serverReadyAction": {
+        "action": "debugWithEdge",
+        "pattern": "Local:\\s+(http://localhost:5173/)",
+        "uriFormat": "%s",
+        "webRoot": "${workspaceFolder}\\web",
+        "killOnServerStop": true
+      }
+    }
+  ]
+}

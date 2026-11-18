@@ -72,6 +72,29 @@ O usuário SQL precisa de permissão de alteração de schema para aplicar migra
 
 ### Desenvolvimento com atualização automática do React
 
+#### Pelo VS Code
+
+1. Abra a pasta raiz do projeto no VS Code e instale a extensão **C#** da Microsoft.
+2. Na primeira execução, restaure as dependências:
+
+   ```powershell
+   dotnet restore .\NfsController.slnx
+   npm --prefix .\web ci
+   ```
+
+3. Configure a conexão conforme a seção anterior e libere as portas 5163 e 5173
+   (encerre instâncias anteriores da aplicação, se estiverem rodando).
+4. Em **Executar e Depurar** (`Ctrl+Shift+D`), selecione **Iniciar API e React**
+   e pressione `F5`. O VS Code compila e inicia a API, espera ela ficar pronta,
+   inicia o Vite e abre o Microsoft Edge em `http://localhost:5173` para depurar
+   o React. Ao parar a sessão da API, o Vite e o navegador de depuração são encerrados.
+
+Para rodar somente o front, selecione **React (Vite)**; ele precisa da API já em
+execução na porta 5163. Para depurar com o Google Chrome em vez do Edge, altere
+`debugWithEdge` para `debugWithChrome` em `.vscode/launch.json`.
+
+#### Pelo terminal
+
 Com a API em execução, abra outro terminal:
 
 ```powershell
@@ -178,14 +201,5 @@ também decodificam o QR Code gerado, verificam os 44 dígitos copiados e confir
 persistência, isolamento e ausência de conclusão automática. Os registros de teste
 são removidos ao final.
 
-## Prova de conceito original
-
-[extrair_chaves.py](./extrair_chaves.py) continua disponível como utilitário independente:
-
-```powershell
-python -m pip install -r .\requirements.txt
-python .\extrair_chaves.py .\NFs
-```
-
-A aplicação web **não depende de Python**; a API extrai PDFs com PdfPig e XMLs com
-o parser XML do .NET, com entidades externas/DTD desabilitadas.
+A API extrai PDFs com PdfPig e XMLs com o parser XML do .NET, com entidades
+externas/DTD desabilitadas.
