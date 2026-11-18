@@ -1,0 +1,17 @@
+NFs/
+**/bin/
+**/obj/
+**/node_modules/
+api/wwwroot/
+web/dist/
+web/test-results/
+web/playwright-report/
+**/TestResults/
+.vs/
+.env
+.env.*
+!.env.example
+**/appsettings.Local.json
+__pycache__/
+.venv/
+*.user
